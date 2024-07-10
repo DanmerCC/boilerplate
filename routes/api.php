@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::any('/handlerv2', function (Request $request) {
+Route::post('/handlerv2', function (Request $request) {
 
     Log::info($request->method());
 
