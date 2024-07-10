@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::any('/handlerv2', function (Request $request) {
+
+    Log::info($request->method());
+
+    $conexion = new MongoDB\Driver\Manager(config('database.connections.mongodb.dsn'));
+
+    $bulk = new MongoDB\Driver\BulkWrite;
+
+    $bulk->insert($request->all());
+
+    Log::info($request->all());
+
+    $conexion->executeBulkWrite('whatsappanalize.messages', $bulk);
 });
