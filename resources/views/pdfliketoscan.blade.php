@@ -1,0 +1,89 @@
+@extends('seo.page')
+@section('title', 'PDF Scanner')
+@section('description', 'Util herramienta para escanear documentos')
+@section('keywords', 'pdf, escaner, herramienta, word, gratis')
+@section('header-title', 'PDF Scanner')
+
+@section('content')
+    <h2 class="text-xl text-center">Bienvenido a PDF Scanner! 😃</h2>
+
+    <p class="hidden sm:line-clamp-3">
+      Con PDF Scanner, puedes escanear fácilmente documentos 📕 cargando tus archivos abajo 👇. Estos se convertiran en archivos PDF con buena calidad 🤓☝️. Tanto si estás en casa, en la oficina o de viaje, PDF Scanner hace que la gestión de documentos sea sencilla y eficaz.
+      Querías una herramienta útil para escanear documentos? No esperes más 🕑 y prueba PDF Scanner ✨
+    </p>
+
+    <div class="flex flex-col md:flex-row md:items-center">
+      <div class="publicity-container">
+        <a class="w-full h-32 md:w-36 md:h-96 place-content-center" href="">
+          <img class="object-scale-down w-full h-full" src="">
+        </a>
+      </div>
+
+      <div class="flex flex-col gap-2 w-full items-center">
+        <div class="box-container self-stretch justify-center items-center">
+          <!-- When no file is uploaded  -->
+          <button id="upload-btn" class="box-container flex-col my-20 gap-3 size-36 border-dashed border-white justify-center items-center hover:bg-purple disabled:blur-sm">
+            <i class="fa-solid fa-cloud-arrow-up text-5xl"></i>
+            <div class="text-wrap">Upload your file here</div>
+          </button>
+          <input type="file" id="file-input" class="hidden" accept=".pdf" />
+
+          <!-- When a file is uploaded -->
+          <div id="file-info" class="flex flex-col gap-2 size-32 items-center justify-center hidden">
+            <i class="fa-regular fa-file text-4xl"></i>
+            <div id="file-name"></div>
+          </div>
+        </div>
+        <button class="btn" id="convert-btn">Convert and download</button>
+      </div>
+
+      <div class="publicity-container">
+        <a class="w-full h-32 md:w-36 md:h-96 place-content-center" href="">
+          <img class="object-scale-down w-full h-full" src="">
+        </a>
+      </div>
+    </div>
+@endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const uploadBtn = document.getElementById('upload-btn');
+        const fileInput = document.getElementById('file-input');
+        const fileInfo = document.getElementById('file-info');
+        const fileName = document.getElementById('file-name');
+        const convertBtn = document.getElementById('convert-btn');
+
+        uploadBtn.onclick = () => fileInput.click();
+
+        fileInput.onchange = (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                fileInfo.classList.remove('hidden');
+                fileName.textContent = file.name;
+                uploadBtn.classList.add('hidden');
+            }
+        };
+
+        convertBtn.onclick = () => {
+            const file = fileInput.files[0];
+            if (file) {
+                const formData = new FormData();
+                formData.append('file', file);
+                fetch('/pdfliketoscan/upload', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const a = document.createElement('a');
+                        a.href = data.url;
+                        a.download = 'converted.pdf';
+                        a.click();
+                    }
+                });
+            }
+        }
+    });
+</script>
+@endpush

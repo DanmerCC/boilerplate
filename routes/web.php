@@ -14,3 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/pdflike2scan', function () {
+    return view('pdfliketoscan');
+});
