@@ -7,6 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Título de la página')</title>
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="@yield('og:title', 'Título de la página')">
+    <meta property="og:description" content="@yield('og:description', 'Descripción de la página')">
+    <meta property="og:type" content="@yield('og:type', 'website')">
+    <meta property="og:url" content="@yield('og:url', request()->url())">
+    <meta property="og:image" content="@yield('og:image', asset('default-image.jpg'))">
+    <meta property="og:site_name" content="@yield('og:site_name', config('app.name'))">
+
     @vite('resources/css/app.css')
     @stack('head')
 </head>

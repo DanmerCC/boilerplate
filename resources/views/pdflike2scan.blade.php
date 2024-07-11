@@ -3,7 +3,9 @@
 @section('description', 'Util herramienta para escanear documentos')
 @section('keywords', 'pdf, escaner, herramienta, word, gratis')
 @section('header-title', 'PDF Scanner')
-
+@section('og:title', 'PDF Scanner')
+@section('og:description', 'Util herramienta para escanear documentos')
+@section('og:image', asset('camayocdefault.png'))
 @section('content')
     <h2 class="text-xl text-center">Bienvenido a PDF Scanner! 😃</h2>
 
