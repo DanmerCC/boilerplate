@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/** pdf**/
+@layer components {
+    .box-container {
+      @apply flex p-2 gap-3 border-2 border-purple rounded-lg
+    }
+    .publicity-container {
+      @apply box-container gap-1 justify-center items-center
+    }
+    .btn {
+      @apply box-container gap-0 hover:bg-purple
+    }
+  }

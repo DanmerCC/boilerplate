@@ -8,33 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Título de la página')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              purple: '#7a6adc',
-              black: '#39393A'
-            }
-          }
-        }
-      }
-    </script>
-    <style type="text/tailwindcss">
-      @layer components {
-        .box-container {
-          @apply flex p-2 gap-3 border-2 border-purple rounded-lg
-        }
-        .publicity-container {
-          @apply box-container gap-1 justify-center items-center
-        }
-        .btn {
-          @apply box-container gap-0 hover:bg-purple
-        }
-      }
-    </style>
+    @vite('resources/css/app.css')
     @stack('head')
 </head>
 <body class="bg-black min-w-72">

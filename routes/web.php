@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('pdflike2scan')->group(function () {
-    Route::get('/', function () {
-        return view('pdfliketoscan');
-    });
+    Route::view('/', 'pdflike2scan');
 
     Route::post('/upload', function (Request $request) {
         /** logica  */
