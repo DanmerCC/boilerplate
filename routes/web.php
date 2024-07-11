@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\WhatsappHistory;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/pdflike2scan', function () {
-    return view('pdfliketoscan');
+
+Route::prefix('pdflike2scan')->group(function () {
+    Route::get('/', function () {
+        return view('pdfliketoscan');
+    });
+
+    Route::post('/upload', function (Request $request) {
+        /** logica  */
+
+        Log::info("convierte el pdf a scanned");
+    });
 });

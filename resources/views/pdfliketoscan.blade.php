@@ -35,6 +35,9 @@
           </div>
         </div>
         <button class="btn" id="convert-btn">Convert and download</button>
+        <div id="loading-spinner" class="hidden">
+          <i class="fa-solid fa-spinner fa-spin text-4xl text-purple-600"></i>
+        </div>
       </div>
 
       <div class="publicity-container">
@@ -53,7 +56,8 @@
         const fileInfo = document.getElementById('file-info');
         const fileName = document.getElementById('file-name');
         const convertBtn = document.getElementById('convert-btn');
-
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         uploadBtn.onclick = () => fileInput.click();
 
         fileInput.onchange = (event) => {
@@ -68,19 +72,27 @@
         convertBtn.onclick = () => {
             const file = fileInput.files[0];
             if (file) {
+                loadingSpinner.classList.remove('hidden');
                 const formData = new FormData();
                 formData.append('file', file);
-                fetch('/pdfliketoscan/upload', {
+                fetch('/pdflike2scan/upload', {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    }
                 }).then(response => response.json())
                 .then(data => {
+                    loadingSpinner.classList.add('hidden');
                     if (data.success) {
                         const a = document.createElement('a');
                         a.href = data.url;
                         a.download = 'converted.pdf';
                         a.click();
                     }
+                }).catch(() => {
+                    loadingSpinner.classList.add('hidden');
+                    alert('Error during file conversion');
                 });
             }
         }
