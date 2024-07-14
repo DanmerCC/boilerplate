@@ -18,6 +18,7 @@ class PdfScannerController extends Controller
 
         $pdf = $request->file('file');
         $pdfPath = $pdf->store('pdfs');
+        Log::info("PDF subido: " . $pdfPath);
         $outputPdfPath = 'scanned_' . $pdf->hashName();
 
         $pythonScriptPath = env('PYTHON_SCRIPT',base_path('pdftoscan.py'));
