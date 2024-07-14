@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -20,7 +21,11 @@ class PdfScannerController extends Controller
         $pdfPath = $pdf->store('pdfs');
         Log::info("PDF subido: " . $pdfPath);
         $outputPdfPath = 'scanned_' . $pdf->hashName();
+        $directory = storage_path('app/pdfs');
 
+        if (!is_writable($directory)) {
+            throw new Exception("No se puede escribir en el directorio de almacenamiento");
+        }
         $pythonScriptPath = env('PYTHON_SCRIPT',base_path('pdftoscan.py'));
 
         Log::info("Convirtiendo PDF a escaneado: " . $outputPdfPath);
