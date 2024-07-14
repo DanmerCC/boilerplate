@@ -77,7 +77,7 @@
                 loadingSpinner.classList.remove('hidden');
                 const formData = new FormData();
                 formData.append('file', file);
-                fetch('/pdflike2scan/upload', {
+                fetch('{{ route('like2scan.upload') }}', {
                     method: 'POST',
                     body: formData,
                     headers: {
@@ -89,6 +89,7 @@
                     if (data.success) {
                         const a = document.createElement('a');
                         a.href = data.url;
+                        a.target = '_blank';
                         a.download = 'converted.pdf';
                         a.click();
                     }

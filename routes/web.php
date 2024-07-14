@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PdfScannerController;
 use App\Models\WhatsappHistory;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
@@ -17,12 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::prefix('pdflike2scan')->group(function () {
-    Route::view('/', 'pdflike2scan');
-
-    Route::post('/upload', function (Request $request) {
-        /** logica  */
-
-        Log::info("convierte el pdf a scanned");
-    });
+Route::domain(env('DOMAIN_NAME','like2scan.camayoc.com'))->group(function () {
+    Route::view('/', 'pdflike2scan')->name('like2scan.view');
+    Route::post('/upload',[PdfScannerController::class,'upload'])->name('like2scan.upload');
 });
