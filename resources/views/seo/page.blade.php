@@ -33,7 +33,7 @@
         @yield('content')
     </main>
 
-    <footer style="display: contents" class="absolute w-screen start-0 bottom-0">
+    <footer class="fixed w-screen start-0 bottom-0">
         <div class="text-center bg-purple text-white py-4">© CAMAYOC TEAM</div>
     </footer>
 

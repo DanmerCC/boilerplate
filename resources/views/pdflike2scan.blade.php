@@ -15,7 +15,7 @@
     </p>
 
     <div class="flex flex-col md:flex-row md:items-center">
-      <div class="publicity-container">
+      <div class="hidden md:flex publicity-container invisible">
         <a class="w-full h-32 md:w-36 md:h-96 place-content-center" href="">
           <img class="object-scale-down w-full h-full" src="">
         </a>
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <div class="publicity-container">
+      <div class="hidden md:flex publicity-container invisible">
         <a class="w-full h-32 md:w-36 md:h-96 place-content-center" href="">
           <img class="object-scale-down w-full h-full" src="">
         </a>
