@@ -10,8 +10,7 @@
     <h2 class="text-xl text-center">Bienvenido a PDF Scanner! 😃</h2>
 
     <p class="hidden sm:line-clamp-3">
-      Con PDF Scanner, puedes escanear fácilmente documentos 📕 cargando tus archivos abajo 👇. Estos se convertiran en archivos PDF con buena calidad 🤓☝️. Tanto si estás en casa, en la oficina o de viaje, PDF Scanner hace que la gestión de documentos sea sencilla y eficaz.
-      Querías una herramienta útil para escanear documentos? No esperes más 🕑 y prueba PDF Scanner ✨
+      Aqui puedes hacer que tus documentos en PDF adquieran el aspecto de un documento escaneado.
     </p>
 
     <div class="flex flex-col md:flex-row md:items-center">
@@ -110,4 +109,5 @@
 
   gtag('config', 'G-RYT9XGNPJ8');
 </script>
+
 @endpush
