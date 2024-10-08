@@ -18,3 +18,52 @@
       @apply box-container gap-0 hover:bg-purple
     }
   }
+
+@keyframes move-to-right {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Animación para el ícono que se mueve */
+.animate-icon {
+    position: relative;
+    animation: move-to-right 3s ease-in-out infinite;
+}
+
+/* Contenedor con sombra en escala de grises y línea púrpura que se mueve */
+.grayscale-shadow {
+    position: relative;
+    overflow: hidden;
+}
+
+.grayscale-shadow:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: -100%;
+    border-right: 4px solid #a855f7;
+    /* Color púrpura */
+    backdrop-filter: grayscale(1);
+    background: rgba(156, 163, 175, 0.1);
+    animation: move-to-right 3s ease-in-out infinite;
+}
+
+/* Ícono en la imagen */
+.image-icon {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    background-color: #a855f7;
+    padding: 10px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    animation: move-to-right 3s ease-in-out infinite;
+}

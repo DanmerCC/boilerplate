@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::domain(env('DOMAIN_NAME','like2scan.camayoc.com'))->group(function () {
+Route::domain(env('DOMAIN_NAME', 'like2scan.camayoc.com'))->group(function () {
     Route::view('/', 'pdflike2scan')->name('like2scan.view');
-    Route::post('/upload',[PdfScannerController::class,'upload'])->name('like2scan.upload');
+    Route::post('/upload', [PdfScannerController::class, 'upload'])->name('like2scan.upload');
 });
+
+Route::view('/admin', 'admin.base')->name('pdf.view');
