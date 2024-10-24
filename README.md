@@ -7,6 +7,7 @@
 4. [Plantillas Blade](#plantillas-blade)
 5. [Comandos de Gestión de Dominios](#comandos-de-gestión-de-dominios)
 
+
 ## Estructura del Proyecto
 
 ```plaintext
